@@ -24,7 +24,6 @@ class Auth:
                 return False
             if path == exclusion.rstrip('/'):
                 return False
-        
         return True
 
     def authorization_header(self, request=None) -> str:

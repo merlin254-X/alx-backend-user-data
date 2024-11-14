@@ -8,9 +8,9 @@ from base64 import b64decode
 from models.user import User
 from typing import TypeVar
 
+
 class BasicAuth(Auth):
     """Basic authentication class inherited from Auth."""
-    
     def extract_base64_authorization_header(
             self, authorization_header: str) -> str:
         """Extracts the Base64 part of
@@ -19,13 +19,10 @@ class BasicAuth(Auth):
 
         if authorization_header is None:
             return None
-        
         if not isinstance(authorization_header, str):
             return None
-        
         if not authorization_header.startswith("Basic "):
             return None
-        
         # Return the part after "Basic "
         return authorization_header[6:]
 
@@ -42,7 +39,6 @@ class BasicAuth(Auth):
         except Exception:
             return None
 
-
     def extract_user_credentials(
             self, decoded_base64_authorization_header: str) -> (str, str):
         """ Returns user email and pswd from decoded Base64 """
@@ -54,7 +50,6 @@ class BasicAuth(Auth):
             return None, None
         email, pwd = decoded_base64_authorization_header.split(':', 1)
         return (email, pwd)
-
 
     def user_object_from_credentials(self,
                                      user_email: str,
